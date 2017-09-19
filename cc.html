@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		span.date select{ margin-bottom:2px;}
+	</style>
+</head>
+<body>
+	<input type="text" id="txtName" class="date" value="2007-2" /> <button onclick="alert($('#txtName').val());">当前值</button>
+	<br /><br />
+	<input type="text" id="txtDate2" class="date" value="1995-5-2" />
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="http://www.mb5u.com/jscode/html/jquery/472_jselectdate_src_0_2/scripts/jquery.jSelectDate.js"></script>
+<script type="text/javascript">
+	
+	$("body").ready(function(){
+		
+		//应用方法
+		$("input.date").jSelectDate({
+			css:"date",
+			yearBeign: 1995,
+			disabled : false,
+			showLabel : false
+		});
+
+	})
+	
+	$(this).jSelectDate
+
+</script>		
+
+</html>
