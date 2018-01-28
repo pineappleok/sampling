@@ -9,76 +9,35 @@
 <meta content="telephone=no" name="format-detection" />   
 <meta content="email=no" name="format-detection" /><!--禁止Android中自动识别页面中的邮件地址-->   
 <title>扫一扫</title>  
-<script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.js"></script>   
-<style>  
-#video {  
-    height: 400px;  
-    width: 400px;  
-    display: block;  
-    margin: 0;  
-    padding: 0;  
+<script type="text/javascript" >  
+// 扩展API加载完毕后调用onPlusReady回调函数  
+document.addEventListener( "plusready", onPlusReady, false );  
+// 扩展API加载完毕，现在可以正常调用扩展API  
+function onPlusReady() {  
+  var e = document.getElementById("scan");  
+  e.removeAttribute( "disabled" );  
 }  
-#canvas {  
-    height: 400px;  
-    width: 800px;  
-    display: block;  
-    margin: 0;  
-    padding: 0;  
+// 从图片中扫描  
+function scanImg() {  
+plus.barcode.scan( '_www/barcode.png', function (type,result) {  
+alert( "Scan success:("+type+")"+result );  
+}, function (error) {  
+alert( error.message );  
+} );  
 }  
-</style>    
-<video  id="video">  
-<script>  
-    var flag = true;  
-    window.addEventListener("DOMContentLoaded", function () {  
-        var video = document.getElementById("video"), canvas, context;  
-        try {  
-            canvas = document.createElement("canvas");  
-            canvas.width = 640;  
-            canvas.height = 480;  
-            context = canvas.getContext("2d");  
-        } catch (e) { alert("not support canvas!"); return; }  
-        navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;  
-  
-        if (navigator.getUserMedia)  
-            navigator.getUserMedia(  
-                { "video": true },  
-                function (stream) {  
-                    if (video.mozSrcObject !== undefined)video.mozSrcObject = stream;  
-                    else video.src = ((window.URL || window.webkitURL || window.mozURL || window.msURL) && window.URL.createObjectURL(stream)) || stream;                 
-                    video.play();  
-                },  
-                function (error) {  
-                    alert("请检查是否存在或者开启摄像头");  
-                    flag = false;  
-                }  
-            );  
-        else alert("Native device media streaming (getUserMedia) not supported in this browser");  
-         
-        setInterval(function () {  
-            if(!flag){  
-                return;  
-            }  
-            context.drawImage(video, 0, 0, canvas.width = video.videoWidth, canvas.height = video.videoHeight);  
-            var image = canvas.toDataURL("image/png").replace("data:image/png;base64,", "");   
-            $.ajax({  
-                url : 'qRCodeAction_decoderQRCode.action',  
-                async : false,  
-                type : 'post',  
-                data : {  
-                    'time' : (new Date()).toString(),  
-                    'img' : image  
-                },  
-                success : function(message) {  
-                    if(message!=null){  
-                      flag=false;  
-                      window.location.href='qRCodeActionshow.action?message='+message;  
-                    }  
-                },  
-            });  
-        }, 5000);  
-    }, false);  
- </script>   
+</script>  
+<style type="text/css">  
+*{  
+-webkit-user-select: none;  
+}  
+html,body{  
+margin: 0px;  
+padding: 0px;  
+height: 100%;  
+}  
+</style>  
 </head>  
-<body>  
+<body >  
+<input id="scan" type='button' disabled="disabled" onclick='scanImg()' value='扫描图片'></input>  
 </body>  
 </html> 
