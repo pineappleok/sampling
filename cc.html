@@ -30,10 +30,10 @@
 
 <!-- 必须制定容器的大小（height、width） -->
 
-<div id="main" style="width: 98%; height: 500px;border: 1px solid #ccc; padding: 10px;"></div>
+<div id="main" style="width: 50%; height: 500px;border: 1px solid #ccc; padding: 10px;"></div>
 
 <script type="text/javascript" src="js/echarts.js"></script>  <!-- 换成高版本的echarts,就得手动引入地图js -->
-<script src="http://echarts.baidu.com/asset/map/js/china.js"></script>
+<script src="js/china.js"></script>
 
 
     <script type="text/javascript">
@@ -86,7 +86,7 @@
 
        toolbox: {
 
-           show: true,
+           show: false,
 
            orient : 'vertical',
 
@@ -136,7 +136,7 @@
 
                itemStyle:{
 
-                   normal:{label:{show:true}},
+                   normal:{label:{show:false}},
 
                    emphasis:{label:{show:true}}
 
@@ -224,14 +224,6 @@
 
                mapType: 'china',
 
-               itemStyle:{
-
-                   normal:{label:{show:true}},
-
-                   emphasis:{label:{show:true}}
-
-               },
-
                data:[
 
                    {name: '北京',value: Math.round(Math.random()*1000)},
@@ -283,14 +275,6 @@
                type: 'map',
 
                mapType: 'china',
-
-               itemStyle:{
-
-                   normal:{label:{show:true}},
-
-                   emphasis:{label:{show:true}}
-
-               },
 
                data:[
 
