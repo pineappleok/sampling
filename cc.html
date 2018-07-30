@@ -1,120 +1,67 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-
+<!DOCTYPE html>
+<html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>无标题文档</title>
+    <meta charset="UTF-8"/>
+    <title>Java后端WebSocket的Tomcat实现</title>
 </head>
-<script src="js/vue.js"></script>
-<script src="js/Sortable.js"></script>
-
 <body>
-    <table>
-        <thead>
-            <tr>
-                <tr>
-                    <th width="3%"></th>
-                    <th width="5%"> 功能类型 </th>
-                    <th width="32%">名称</th>
-                    <th width="20%">模版选择</th>
-                    <th width="20%">图标选择</th>
-                    <th width="20%">背景选择</th>
-                </tr>
-        </thead>
-        <tbody id="foo">
-            <tr v-for="(item,index) in rows" :key="index" :data-key="index">
-                <td>=</td>
-                <td>{{item.type}}</td>
-                <td>{{item.name}}</td>
-                <td>{{item.templateType}}</td>
-                <td>{{item.icon}}</td>
-                <td>{{item.background}}</td>
-            </tr>
-        </tbody>
-    </table>
-    <script>
-    var app = new Vue({
-        el: "#foo",
-        data() {
-            return {
-                rows: [{
-                    type: 1,
-                    name: 'gps功能集',
-                    templateType: 1,
-                    icon: '#foeur',
-                    background: '',
-                }, {
-                    type: 1,
-                    name: 'gps功能集2',
-                    templateType: 1,
-                    icon: '#foeur',
-                    background: '',
-                }, {
-                    type: 1,
-                    name: 'gps功能集3',
-                    templateType: 1,
-                    icon: '#foeur',
-                    background: '',
-                }, {
-                    type: 1,
-                    name: 'gps功能集4',
-                    templateType: 1,
-                    icon: '#foeur',
-                    background: '',
-                }, {
-                    type: 1,
-                    name: 'gps功能集5',
-                    templateType: 1,
-                    icon: '#foeur',
-                    background: '',
-                }]
-            };
-        },
-        created() {},
-        methods: {
-            getOder() {
-                let foo = document.querySelector("#foo");
-                let fooArr = foo.querySelectorAll("tr");
-                let trArr = [];
-                fooArr.forEach(val => {
-                    trArr.push(val.getAttribute("data-key"));
-                });
-                let newArr = [];
-                trArr.forEach(val => {
-                    newArr.push(app.rows[val]);
-                });
-                return newArr;
-            },
-        }
-    });
-    Sortable.create(document.getElementById('foo'), {
-        animation: 150, //动画参数
-        onAdd: function(evt) { //拖拽时候添加有新的节点的时候发生该事件
-            console.log('onAdd.foo:', [evt.item, evt.from]);
-        },
-        onUpdate: function(evt) { //拖拽更新节点位置发生该事件
-            console.log('onUpdate.foo:', [evt.item, evt.from]);
-        },
-        onRemove: function(evt) { //删除拖拽节点的时候促发该事件
-            console.log('onRemove.foo:', [evt.item, evt.from]);
-        },
-        onStart: function(evt) { //开始拖拽出发该函数
-            console.log('onStart.foo:', [evt.item, evt.from]);
-        },
-        onSort: function(evt) { //发生排序发生该事件
-            console.log('onSort.foo:', [evt.item, evt.from]);
-        },
-        onEnd: function(evt) { //拖拽完毕之后发生该事件
-            console.log('onEnd.foo:', [evt.item, evt.from]);
-            /*let arr2 = app.rows.splice(evt.oldIndex, 1);*/
-            console.log(JSON.stringify(app.rows));
-            /*let arr3 = app.rows.splice(evt.newIndex, 0, arr2[0]);*/
-            console.log([evt.oldIndex, evt.newIndex]);
-            console.log(JSON.stringify(app.rows));
-            let newArr=app.getOder();
-        }
-    });
-    </script>
+    Welcome<br/><input id="text" type="text"/>
+    <button onclick="send()">发送消息</button>
+    <hr/>
+    <button onclick="closeWebSocket()">关闭WebSocket连接</button>
+    <hr/>
+    <div id="message"></div>
 </body>
 
+<script type="text/javascript">
+    var websocket = null;
+    //判断当前浏览器是否支持WebSocket
+    if ('WebSocket' in window) {
+        websocket = new WebSocket("ws://172.28.5.11:9060//websocket/10e384b6-47a5-4b92-ba10-34e21a6d9a80");
+    }
+    else {
+        alert('当前浏览器 Not support websocket')
+    }
+
+    //连接发生错误的回调方法
+    websocket.onerror = function () {
+        setMessageInnerHTML("WebSocket连接发生错误");
+    };
+
+    //连接成功建立的回调方法
+    websocket.onopen = function () {
+        setMessageInnerHTML("WebSocket连接成功");
+    }
+
+    //接收到消息的回调方法
+    websocket.onmessage = function (event) {
+        setMessageInnerHTML(event.data);
+    }
+
+    //连接关闭的回调方法
+    websocket.onclose = function () {
+        setMessageInnerHTML("WebSocket连接关闭");
+    }
+
+    //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
+    window.onbeforeunload = function () {
+        closeWebSocket();
+    }
+
+    //将消息显示在网页上
+    function setMessageInnerHTML(innerHTML) {
+        document.getElementById('message').innerHTML += innerHTML + '<br/>';
+    }
+
+    //关闭WebSocket连接
+    function closeWebSocket() {
+        websocket.close();
+    }
+
+    //发送消息
+    function send() {
+        var message = document.getElementById('text').value;
+        websocket.send(message);
+    }
+</script>
 </html>
