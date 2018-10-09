@@ -15,54 +15,333 @@
 </body>
 
 <script type="text/javascript">
-    var websocket = null;
-    //判断当前浏览器是否支持WebSocket
-    if ('WebSocket' in window) {
-        websocket = new WebSocket("ws://172.28.5.11:9060//websocket/8af9f74e-0547-4855-81e1-ae0ff6dd0b4a");
+    var tree = [
+    { name: 'node1' },
+    { name: 'node2', children: [{ name: 'node-2-1' }, { name: 'node2-2' }] },
+    { name: 'node3', children: [{ name: 'node-3-1', children: [{ name: 'node3-1-1' }] }, { name: 'node3-2' }] }
+];
+var key = 'test'
+function parseJson(arr) {
+    arr = arr.slice()
+    function toParse(arr) {
+        arr.forEach(function (item) {
+            if (item.children && Array.isArray(item.children)) {
+                item[key] = item.children
+                toParse(item[key])
+            }
+            delete item.children
+        })
+        return arr
     }
-    else {
-        alert('当前浏览器 Not support websocket')
-    }
+    return toParse(arr)
+}
 
-    //连接发生错误的回调方法
-    websocket.onerror = function () {
-        setMessageInnerHTML("WebSocket连接发生错误");
-    };
+console.log('parseJson',parseJson(tree));
 
-    //连接成功建立的回调方法
-    websocket.onopen = function () {
-        setMessageInnerHTML("WebSocket连接成功");
+function parseJson2(arr,jsonkey,newkey,children) {
+    arr = arr.slice()
+    function toParse(arr) {
+        arr.forEach(function (item) {
+            if (item[jsonkey]) {
+                item[newkey] = item[jsonkey]
+                if(Array.isArray(item[children])){
+                    toParse(item[children])
+                }
+            }
+            delete item[jsonkey]
+        })
+        return arr
     }
-
-    //接收到消息的回调方法
-    websocket.onmessage = function (event) {
-        setMessageInnerHTML(event.data+' 时间：'+(new Date()));
+    return toParse(arr)
+}
+var arr=[
+    {
+      "id": "1",
+      "name": "系统管理",
+      "description": null,
+      "checked": false,
+      "children": [
+        {
+          "id": "11",
+          "name": "菜单管理",
+          "description": null,
+          "checked": false,
+          "children": null,
+          "code": null,
+          "url": null,
+          "icon": null,
+          "sort": 1,
+          "isMenu": 1,
+          "enable": 1,
+          "pid": "1"
+        },
+        {
+          "id": "12",
+          "name": "账号管理",
+          "description": null,
+          "checked": false,
+          "children": null,
+          "code": null,
+          "url": null,
+          "icon": null,
+          "sort": 2,
+          "isMenu": 1,
+          "enable": 1,
+          "pid": "1"
+        },
+        {
+          "id": "13",
+          "name": "角色管理",
+          "description": null,
+          "checked": false,
+          "children": null,
+          "code": null,
+          "url": null,
+          "icon": null,
+          "sort": 3,
+          "isMenu": 1,
+          "enable": 1,
+          "pid": "1"
+        },
+        {
+          "id": "14",
+          "name": "部门管理",
+          "description": null,
+          "checked": false,
+          "children": null,
+          "code": null,
+          "url": null,
+          "icon": null,
+          "sort": 4,
+          "isMenu": 1,
+          "enable": 1,
+          "pid": "1"
+        },
+        {
+          "id": "15",
+          "name": "日志管理",
+          "description": null,
+          "checked": false,
+          "children": null,
+          "code": null,
+          "url": null,
+          "icon": null,
+          "sort": 5,
+          "isMenu": 1,
+          "enable": 1,
+          "pid": "1"
+        }
+      ],
+      "code": null,
+      "url": null,
+      "icon": null,
+      "sort": 1,
+      "isMenu": 1,
+      "enable": 1,
+      "pid": "-1"
+    },
+    {
+      "id": "2",
+      "name": "模板管理",
+      "description": null,
+      "checked": false,
+      "children": [
+        {
+          "id": "21",
+          "name": "功能点功能集管理",
+          "description": null,
+          "checked": false,
+          "children": null,
+          "code": null,
+          "url": null,
+          "icon": null,
+          "sort": 1,
+          "isMenu": 1,
+          "enable": 1,
+          "pid": "2"
+        },
+        {
+          "id": "22",
+          "name": "演示产品模板管理",
+          "description": null,
+          "checked": false,
+          "children": null,
+          "code": null,
+          "url": null,
+          "icon": null,
+          "sort": 2,
+          "isMenu": 1,
+          "enable": 1,
+          "pid": "2"
+        },
+        {
+          "id": "23",
+          "name": "演示视频管理",
+          "description": null,
+          "checked": false,
+          "children": null,
+          "code": null,
+          "url": null,
+          "icon": null,
+          "sort": 3,
+          "isMenu": 1,
+          "enable": 1,
+          "pid": "2"
+        },
+        {
+          "id": "24",
+          "name": "行业管理管理",
+          "description": null,
+          "checked": false,
+          "children": null,
+          "code": null,
+          "url": null,
+          "icon": null,
+          "sort": 4,
+          "isMenu": 1,
+          "enable": 1,
+          "pid": "2"
+        }
+      ],
+      "code": null,
+      "url": null,
+      "icon": null,
+      "sort": 2,
+      "isMenu": 1,
+      "enable": 1,
+      "pid": "-1"
+    },
+    {
+      "id": "3",
+      "name": "IOT管理",
+      "description": null,
+      "checked": false,
+      "children": [
+        {
+          "id": "31",
+          "name": "客户管理",
+          "description": null,
+          "checked": false,
+          "children": null,
+          "code": null,
+          "url": null,
+          "icon": null,
+          "sort": 1,
+          "isMenu": 1,
+          "enable": 1,
+          "pid": "3"
+        },
+        {
+          "id": "32",
+          "name": "产品管理",
+          "description": null,
+          "checked": false,
+          "children": null,
+          "code": null,
+          "url": null,
+          "icon": null,
+          "sort": 2,
+          "isMenu": 1,
+          "enable": 1,
+          "pid": "3"
+        },
+        {
+          "id": "33",
+          "name": "数据统计分析",
+          "description": null,
+          "checked": false,
+          "children": null,
+          "code": null,
+          "url": null,
+          "icon": null,
+          "sort": 3,
+          "isMenu": 1,
+          "enable": 1,
+          "pid": "3"
+        }
+      ],
+      "code": null,
+      "url": null,
+      "icon": null,
+      "sort": 3,
+      "isMenu": 1,
+      "enable": 1,
+      "pid": "-1"
+    },
+    {
+      "id": "4",
+      "name": "客服管理",
+      "description": null,
+      "checked": false,
+      "children": null,
+      "code": null,
+      "url": null,
+      "icon": null,
+      "sort": 4,
+      "isMenu": 1,
+      "enable": 1,
+      "pid": "-1"
+    },
+    {
+      "id": "5",
+      "name": "消息与审核",
+      "description": null,
+      "checked": false,
+      "children": [
+        {
+          "id": "51",
+          "name": "新建消息",
+          "description": null,
+          "checked": false,
+          "children": null,
+          "code": null,
+          "url": null,
+          "icon": null,
+          "sort": 1,
+          "isMenu": 1,
+          "enable": 1,
+          "pid": "5"
+        },
+        {
+          "id": "52",
+          "name": "项目审核",
+          "description": null,
+          "checked": false,
+          "children": null,
+          "code": null,
+          "url": null,
+          "icon": null,
+          "sort": 2,
+          "isMenu": 1,
+          "enable": 1,
+          "pid": "5"
+        },
+        {
+          "id": "53",
+          "name": "用户反馈",
+          "description": null,
+          "checked": false,
+          "children": null,
+          "code": null,
+          "url": null,
+          "icon": null,
+          "sort": 3,
+          "isMenu": 1,
+          "enable": 1,
+          "pid": "5"
+        }
+      ],
+      "code": null,
+      "url": null,
+      "icon": null,
+      "sort": 5,
+      "isMenu": 1,
+      "enable": 1,
+      "pid": "-1"
     }
-
-    //连接关闭的回调方法
-    websocket.onclose = function () {
-        setMessageInnerHTML("WebSocket连接关闭");
-    }
-
-    //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
-    window.onbeforeunload = function () {
-        closeWebSocket();
-    }
-
-    //将消息显示在网页上
-    function setMessageInnerHTML(innerHTML) {
-        document.getElementById('message').innerHTML += innerHTML + '<br/>';
-    }
-
-    //关闭WebSocket连接
-    function closeWebSocket() {
-        websocket.close();
-    }
-
-    //发送消息
-    function send() {
-        var message = document.getElementById('text').value;
-        websocket.send(message);
-    }
+  ];
+var newarr=parseJson2(arr,'name','title','children');
+console.log(arr);
+console.log(newarr);
 </script>
 </html>
