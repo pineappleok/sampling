@@ -15,57 +15,18 @@
 </body>
 
 <script type="text/javascript">
-    var tree = [
-    { name: 'node1' },
-    { name: 'node2', children: [{ name: 'node-2-1' }, { name: 'node2-2' }] },
-    { name: 'node3', children: [{ name: 'node-3-1', children: [{ name: 'node3-1-1' }] }, { name: 'node3-2' }] }
-];
-var key = 'test'
-function parseJson(arr) {
-    arr = arr.slice()
-    function toParse(arr) {
-        arr.forEach(function (item) {
-            if (item.children && Array.isArray(item.children)) {
-                item[key] = item.children
-                toParse(item[key])
-            }
-            delete item.children
-        })
-        return arr
-    }
-    return toParse(arr)
-}
-
-console.log('parseJson',parseJson(tree));
-
-function parseJson2(arr,jsonkey,newkey,children) {
-    arr = arr.slice()
-    function toParse(arr) {
-        arr.forEach(function (item) {
-            if (item[jsonkey]) {
-                item[newkey] = item[jsonkey]
-                if(Array.isArray(item[children])){
-                    toParse(item[children])
-                }
-            }
-            delete item[jsonkey]
-        })
-        return arr
-    }
-    return toParse(arr)
-}
-var arr=[
+var arr2=[
     {
       "id": "1",
       "name": "系统管理",
       "description": null,
-      "checked": false,
+      "checked": true,
       "children": [
         {
           "id": "11",
           "name": "菜单管理",
           "description": null,
-          "checked": false,
+          "checked": true,
           "children": null,
           "code": null,
           "url": null,
@@ -107,7 +68,7 @@ var arr=[
           "id": "14",
           "name": "部门管理",
           "description": null,
-          "checked": false,
+          "checked": true,
           "children": null,
           "code": null,
           "url": null,
@@ -121,7 +82,7 @@ var arr=[
           "id": "15",
           "name": "日志管理",
           "description": null,
-          "checked": false,
+          "checked": true,
           "children": null,
           "code": null,
           "url": null,
@@ -144,13 +105,13 @@ var arr=[
       "id": "2",
       "name": "模板管理",
       "description": null,
-      "checked": false,
+      "checked": true,
       "children": [
         {
           "id": "21",
           "name": "功能点功能集管理",
           "description": null,
-          "checked": false,
+          "checked": true,
           "children": null,
           "code": null,
           "url": null,
@@ -215,7 +176,7 @@ var arr=[
       "id": "3",
       "name": "IOT管理",
       "description": null,
-      "checked": false,
+      "checked": true,
       "children": [
         {
           "id": "31",
@@ -235,7 +196,7 @@ var arr=[
           "id": "32",
           "name": "产品管理",
           "description": null,
-          "checked": false,
+          "checked": true,
           "children": null,
           "code": null,
           "url": null,
@@ -272,7 +233,7 @@ var arr=[
       "id": "4",
       "name": "客服管理",
       "description": null,
-      "checked": false,
+      "checked": true,
       "children": null,
       "code": null,
       "url": null,
@@ -292,7 +253,7 @@ var arr=[
           "id": "51",
           "name": "新建消息",
           "description": null,
-          "checked": false,
+          "checked": true,
           "children": null,
           "code": null,
           "url": null,
@@ -340,8 +301,27 @@ var arr=[
       "pid": "-1"
     }
   ];
-var newarr=parseJson2(arr,'name','title','children');
-console.log(arr);
-console.log(newarr);
+function chooseChecked(arr,children) {
+    arr = arr.slice();
+    let checkedArr=[];
+    function toParse(arr) {
+        arr.forEach(function (item) {
+            if(item.id){
+                if (item.checked) {
+                    checkedArr.push(item.id);
+                }
+                if(Array.isArray(item[children])){
+                    toParse(item[children])
+                }
+            }
+            delete item.id;
+        })
+        return checkedArr
+    }
+    return toParse(arr)
+}
+var newarr2=chooseChecked(arr2,'children');
+console.log(arr2);
+console.log(newarr2);
 </script>
 </html>
