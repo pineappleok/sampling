@@ -1,30 +1,45 @@
-
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8"/>
-    <title>Java后端WebSocket的Tomcat实现</title>
-</head>
-<body>
-    Welcome<br/><input id="text" type="text"/>
-    <button onclick="send()">发送消息</button>
-    <hr/>
-    <button onclick="closeWebSocket()">关闭WebSocket连接</button>
-    <hr/>
-    <div id="message"></div>
-</body>
 
+<head>
+    <meta charset="UTF-8" />
+    <title>Java后端WebSocket的Tomcat实现</title>
+    <style>
+    /*声明 WebFont*/
+    @font-face {
+    font-family: 'Hzpy';
+    src: url('./images/Hzpy.ttf');
+    src: url('./images/Hzpy.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    }
+    body{
+        font-family: 'Hzpy';
+        font-size: 3.5rem;
+    }
+    </style>
+</head>
+
+<body> 
+试试，好呀好呀，好奇妙哦，竟然可以把它弄成字体呀，和稀泥呀，自怨自艾耶
+</body>
 <script type="text/javascript">
-            function hehe(){
-                for (var i = 0; i < 4;i++ ) {
-                    let dataStr = 'data' + i;
-                    console.log(dataStr);
-                    function print(){
-                        console.log(i+''+dataStr);
-                    }
-                    print();
-                }
-            }
-            hehe();
+function hehe() {
+    for (var i = 0; i < 4; i++) {
+        let dataStr = 'data' + i;
+        console.log(dataStr);
+
+        function print() {
+            console.log(i + '' + dataStr);
+        }
+        print();
+    }
+}
+hehe();
+
+function next() {
+    window.location.replace('www.baidu.com')
+}
 </script>
+
 </html>
