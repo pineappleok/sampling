@@ -11,20 +11,23 @@
 </head>
 <body>
     <script>
-        function debounce(fn, wait) {
-            var timeout = null;
-            return function() {
-                if(timeout !== null)
-                    clearTimeout(timeout);
-                timeout = setTimeout(fn, wait);
+        var throttle = function(func, delay) {
+            var timer=null;
+            return function(){
+                var context=this;
+                var args=arguments;
+                if(!timer){
+                    timer=setTimeout(function(){
+                        func.apply(context,args);
+                        timer=null;
+                    },delay)
+                }
             }
         }
-        // 处理函数
         function handle() {
             console.log(Math.random());
         }
-        // 滚动事件
-        window.addEventListener('scroll', debounce(handle, 1000));
+        window.addEventListener('scroll', throttle(handle, 1000));
     </script>
 </body>
 </html>
