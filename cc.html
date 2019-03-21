@@ -1,175 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <style type="text/css">
-    * {
-        max-width: 100%;
-    }
-    /*生成浮动目录导航的CSS*/
-    
-    #sideBar {
-        font-size: 12px;
-        font-family: Arial, Helvetica, sans-serif;
-        text-align: left;
-        position: fixed;
-        /*将div的位置固定到距离top:50px，right:0px的位置，这样div就会处在最右边的位置，距离顶部50px*/
-        top: 100px;
-        right: 0px;
-        width: auto;
-        height: auto;
-    }
-    
-    #sideBarTab {
-        float: left;
-        width: 35px;
-        border: 1px solid #e5e5e5;
-        border-right: none;
-        text-align: center;
-        background: #ffffff;
-        padding: 5px;
-    }
-    
-    #sideBarContents {
-        float: left;
-        overflow: auto;
-        overflow-x: hidden;
-        !important;
-        width: 200px;
-        min-height: 108px;
-        max-height: 460px;
-        border: 1px solid #e5e5e5;
-        border-right: none;
-        background: #ffffff;
-        padding: 15px;
-    }
-    
-    #sideBarContents dl {
-        margin: 0;
-        padding: 0;
-    }
-    
-    #sideBarContents dt {
-        color: #000;
-        font-weight: bold;
-        margin-top: 5px;
-        margin-left: 5px;
-    }
-    
-    #sideBarContents dd {
-        color: #585858;
-        font-weight: normal;
-    }
-    
-    #sideBarContents dd,
-    dt {
-        cursor: pointer;
-    }
-    
-    #sideBarContents dd:hover,
-    dt:hover {
-        color: #A7995A;
-    }
+    <title>Title</title>
+    <style>
+        body{
+            height: 5000px;
+        }
     </style>
 </head>
-
 <body>
-    <!-- <div id="article-directory"></div> -->
-    <article id="article-content" class="article">
-        <div class="">
-            <h1>一、平台背景与简介</h1> <img src="/static/images/11.png" alt="" />
-            <ul>
-                <li>平台主要功能：TD-IOT在物联网行业的基本架构如上图所示，作为PaaS层，TD-IOT为SaaS层和设备层搭建连接桥梁，为终端层提供设备接入，为SaaS层提供应用开发能力。</li>
-                <li>平台价值与优势：TD-IOT主要是为众多不具备软件实力的硬件厂商或公司提供软件嵌入以及后期的运营运维跟踪等全生命线的服务。帮助不具备软件能力的硬件商克服这一困难，彻底打开物联网市场。</li>
-            </ul>
-            <h2>平台架构</h2> <img src="/static/images/205.png" alt="" />
-            <h1>二、资源类型：</h1>
-            <h2>【产品创建】</h2>
-            <ol>
-                <li>连接方式：硬件联网的通信方式，有六种分别是:蓝牙，WiFi，zigbee、lora，GG，网关。根据不同的产品特点选择不同的传输方式，比如近距离传输的蓝牙、WiFi、zigbee、lora；室外传输更多会用到GG、网关。
-                    <h4>应用场景举例：</h4> <img src="/static/images/343.png" alt="" /> </li>
-                <li>产品几个概念：
-                    <ul>
-                        <li>产品类型/名称：指的是工程师为开发者命名的产品类型，比如小米4s。</li>
-                        <li>产品ID：产品ID指的是产品类型对应的ID，多个设备共用一个产品型号与ID。</li>
-                        <li>设备ID：指的是生产后拿到用户手上的真实硬件产品，具有唯一性。</li>
-                    </ul>
-                </li>
-                <li>功能点：功能点是指产品具有的功能抽象，通过不同数据类型进行表示。例如最简单的设备“开关”，具备功能为：开启、关闭，将其抽象为一个数据点为布尔型，0表示关闭，1表示开启。</li>
-                <li>功能集：功能集是指好几个功能点的集合。里面有几个独立的功能点，合并成功能集的形式展示。类似于文件与文件夹的关系。</li>
-                <li>触发器：当功能点数据超过设定区间时，会触发报警或是控制功能，来通知客户，该数据处于一个不正常的数值里。</li>
-                <li>触发值，可以自主设定触发值来启发触发器的反应。</li>
-                <li>报警触发，触发器的表现方式中的一种，可以通过预留联系方式通知相应的负责人，通知渠道有电话，短信和邮箱。</li>
-                <li>控制触发，触发器的另一种表现方式，可以通过控制另一个功能点来实现功能点发生异常时触发器的反应。</li>
-                <li>自定义界面，TD-APP展示的一种 ，一般是产品发布成功时给c端用户展示的界面，后期可以更改模板或是编辑模板，进行调整。</li>
-                <li>调试界面，TD-APP展示的另一种，一般是在产品发布前给工程师做调试时，反馈数据的界面，还包括通讯日志的实时展现。</li>
-                <li>编辑APP模板：对自定义界面可以做小的调整，比如背景颜色，图标，模板的类型等。</li>
-                <li>虚拟设备调试：通过虚拟设备模拟真实设备上报数据的行为，可以快速验证接口功能的开发。用您开发的app或 下载TD-App 绑定虚拟设备，即可对虚拟设备进行远程控制及查看通讯日志。</li>
-                <li>虚拟设备通信日志：通过对虚拟设备模拟真实设备上报数据的记录。</li>
-                <li>MUC功能包：根据你定义的产品功能点，会自动生成MCU串口通信代码或整个MCU工程代码。</li>
-                <li>公司认证：在产品发布的时候，如果遇到公司企业发布，需要实名认证才能通过审核。</li>
-                <li>演示产品：在首页里，有展示平台已经做好的产品，模板供客户开发参照使用。</li>
-            </ol>
-            <h2>【运维管理】</h2>
-            <ol>
-                <li>产品库：该账号（或是同步的账号）里所有已经发布成功的产品，可以加入产品库进行在线管理。</li>
-                <li>设备激活：当该设备第一次连上网络，代表激活成功，即可获取设备信息。</li>
-                <li>设备故障：设备故障存在两个部分，一个硬件故障，二是软件故障。硬件故障可以通过设备自行报备返回到平台上，软件故障可以通过用户APP反馈到平台上。</li>
-            </ol>
-            <h1>三、整体流程</h1>
-            <p>TD-IOT平台作为talkingdata推出的专业物联网开放云平台，提供了丰富的智能硬件开发工具和可靠的服务，助力各类终端设备迅速接入网络，实现数据传输、数据存储、数据管理等完整的交互。</p>
-            <p>TD-IOT接入协议包括MQTT、CoAP、Rest等，主要是面向通过MQTT、CoAP与TD-IOT直连的终端，TD-IOT将接收到的数据按照协议解包存储，并以API的方式提供给应用层使用，如下图所示：</p> <img src="/static/images/1567.png" alt="" />
-            <p>根据上述资源模型以及南北向的对接方式，TD-iot平台的开发者（包括个人用户和企业用户）可以按照以下流程进行产品开发，具体见下图：</p> <img src="/static/images/1637.png" alt="" />
-            <p>用户注册和产品创建主要实现用户在平台上的注册和产品的创建工作，后续的设备开发和应用对接的所有操作均在用户所创建的产品上进行。具体可参见“开发者中心”的 “产品创建”章节。</p>
-            <h1>四、产品创建</h1>
-            <p>产品创建流程如下图：</p> <img src="/static/images/1745.png" alt="" />
-            <p>如图所示，在开发者中心点击“创建产品”后输入产品行业、产品名称以及选择对应设备接入方案即可完成“新产品”的创建。创建的产品需要定义产品功能集和功能点以及相应的触发器。功能点是指产品具有的功能抽象，通过不同数据类型进行表示。例如最简单的设备“开关”，具备功能为：开启、关闭，将其抽象为一个数据点为布尔型，0表示关闭，1表示开启。功能集即是功能点的集合。触发器是根据功能点的变化做出反应的触发方式。</p>
-            <p>功能点是一个产品的重要属性，因此产品智能化的第一步，就是明确产品功能，并逐一在平台上创建对应的数据点来描述功能。后续，用于嵌入式开发的MCU 协议将会根据创建的功能点、功能集及触发器自动生成，根据自动生成的协议，开发者即可完成智能设备的开发。</p>
-            <p>产品创建分为以下几个步骤：</p>
-            <ol style="list-style-type: none;">
-                <li>
-                    <h2>第一步：产品创建</h2> <img src="/static/images/2077.png" alt="" />
-                    <p>我们为开发者或企业研发人员提供了6种联网方案接入连网模块，除了支持主流联网模块Wi-Fi、2G/3G/4G、蓝牙外，同时还支持Zigbee、Lora、网关等连接方式。</p>
-                </li>
-                <li>
-                    <h2>第二步：功能定义</h2> <img src="/static/images/2173.png" alt="" />
-                    <p>点击“添加”，新建功能点/功能集模板，或是自定义功能点。创建的产品需要定义产品功能集和功能点以及相应的触发器。功能点是指产品具有的功能抽象，通过不同数据类型进行表示。例如最简单的设备“开关”，具备功能为：开启、关闭，将其抽象为一个数据点为布尔型，0表示关闭，1表示开启。功能集即是功能点的集合。</p>
-                </li>
-                <li>
-                    <h2>第三步：触发器定义</h2> <img src="/static/images/2335.png" alt="" />
-                    <p>点击每个功能点的触发器“添加”，为功能点添加报警触发和控制触发。</p>
-                </li>
-                <li>
-                    <h2>第四步：APP设置</h2> <img src="/static/images/2381.png" alt="" />
-                    <p>为产品设置调试的APP界面</p>
-                    <p>本文列举案例重点介绍如何使用TD-IOT调试APP控制设备流程， 如需快速开发APP，可使用TD-IOT提供的开源框架APP进行快速开发，iOS点击这里 、 Android点击这里查看开源框架。</p> <img src="/static/images/2489.png" alt="" />
-                    <p>应用端接入</p>
-                    <p>开发者或企业研发人员只需在正在开发的手机APP内集成TD-IOT提供的APP SDK，就可以连接TD-IOT平台实现APP通过云端控制智能设备。</p>
-                </li>
-                <li>
-                    <h2>第五步：模拟调试</h2> <img src="/static/images/2583.png" alt="" />
-                    <p>如图所示，扫码进入虚拟设备调试，完成调试下一步找到MCU 开发资源，即可查看云端根据定义的功能自动生成的协议。</p>
-                    <p>调试产品过程中，开发调试的设备将连接TD-IOT的测试服务器，该测试服务器为开发者提供了完整的测试环境，以及TD-IOT部分开放功能。待产品开发完成后需要申请发布，届时将会将开发的产品重新部署到生产服务器上。</p>
-                </li>
-                <li>
-                    <h2>第六步：产品发布</h2> <img src="/static/images/2760.png" alt="" />
-                    <p>当开发者的设备完成全部开发后需要进行产品发布，发布的产品将部署在TD-IOT正式生产环境服务器上，并为你的设备免费分配独立的云端运行环境，确保你的设备24小时不间断在线以供用户使用。同时，产品正式发布后，将享受更多TD-IOT为您提供的免费增值服务，包括：运维管理，运营管理、演示产品展示以及各种无微不至的技术支持服务。</p>
-                </li>
-            </ol>
-        </div>
-    </article>
+    <script>
+        function debounce(fn, wait) {
+            var timeout = null;
+            return function() {
+                if(timeout !== null)
+                    clearTimeout(timeout);
+                timeout = setTimeout(fn, wait);
+            }
+        }
+        // 处理函数
+        function handle() {
+            console.log(Math.random());
+        }
+        // 滚动事件
+        window.addEventListener('scroll', debounce(handle, 1000));
+    </script>
 </body>
-<!-- <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script> -->
-<script src="autoCatelog.js"></script>
-<script>
-// $(function () {
-/*页面加载完成之后生成目录*/
-BlogDirectory.showDirectorySideBar("article-content", "h1", "h2", 20);
-// });
-</script>
-
 </html>
