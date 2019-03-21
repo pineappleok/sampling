@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>测试</title>
+
+</head>
+
+<body>
+    <a class="btn" href="javascript:;" onclick="test()">点击测试</a>
+    
+</body>
+<script src="jquery-1.12.3.min.js"></script>
+<script>
+    function test() {
+        $.ajax({
+            type: 'get',
+            url: 'http://172.28.5.11:9090/developer/product/type/dev/1',
+            // url:'https://www.baidu.com/s?ie=utf-8&mod=11&isbd=1&isid=BFD98AB0F0A48495&ie=utf-8&f=8&rsv_bp=0&rsv_idx=1&tn=baidu&wd=shishi&rsv_pq=de21d21000026d32&rsv_t=05c3EjRxgfRax6WZzSHhXQkY%2FnjsXTd7T2e5e8AcCL8GZrNt4wTTGGfbsb8&rqlang=cn&rsv_enter=1&rsv_sug3=6&rsv_sug1=5&rsv_sug7=101&rsv_sid=26654_1421_26458_21120_26350&_ss=1&clist=&hsug=&csor=6&pstg=5&_cr1=26009',
+            headers: {
+                // access_token: 'Bearer 59ed1817-9e41-45d2-905b-a66d8b1b79fb'
+                Authorization:'1bef9fa3-dc35-42ea-9c19-2fc674f1292b'
+            },
+            success: function (data) {
+                console.log('成功：', data);
+            },
+            error:function(XMLHttpRequest, textStatus, errorThrown){
+              //通常情况下textStatus和errorThrown只有其中一个包含信息
+              this;   //调用本次ajax请求时传递的options参数
+           }
+        });
+    }
+</script>
+
+</html>
