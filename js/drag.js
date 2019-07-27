@@ -44,7 +44,7 @@ window.onmousemove = function(e) {
     }
     else if(nt>=getInner().h-dv.offsetHeight)//元素在最下边时的判定，屏幕的高度减去元素自身的高度
     {
-        nt=Math.floor(getInner().h-dv.offsetHeight);
+        nt=Math.floor(getInner().h-dv.offsetHeight) - 1;
     }
     dv.style.left = nl + 'px';
     dv.style.top = nt + 'px';
