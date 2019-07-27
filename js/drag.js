@@ -36,7 +36,7 @@ window.onmousemove = function(e) {
     }
     else if(nl>=getInner().w-dv.offsetWidth)//元素在最右边时的判定，屏幕的宽度减去元素自身的宽度
     {
-        nl=getInner().w-dv.offsetWidth;
+        nl=Math.floor(getInner().w-dv.offsetWidth);
     }
     if(nt<=0)//上下边界限定
     {
@@ -44,7 +44,7 @@ window.onmousemove = function(e) {
     }
     else if(nt>=getInner().h-dv.offsetHeight)//元素在最下边时的判定，屏幕的高度减去元素自身的高度
     {
-        nt=getInner().h-dv.offsetHeight;
+        nt=Math.floor(getInner().h-dv.offsetHeight);
     }
     dv.style.left = nl + 'px';
     dv.style.top = nt + 'px';
