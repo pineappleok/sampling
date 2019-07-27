@@ -1,37 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <style>
-        body{
-            height: 5000px;
-        }
-    </style>
+  <title>Title</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 <body>
-    <script>
-        var throttle = function(func, delay) {
-            var timer=null;
-            var startTime=Date.now();
-            return function(){
-                var curTime=Date.now();
-                var remaining=delay-(curTime - startTime);
-                var context=this;
-                var args=arguments;
-                clearTimeout(timer);
-                if(remaining<=0){
-                    func.apply(context,args);
-                    startTime=Date.now();
-                }else{
-                    timer=setTimeout(func,remaining);
-                }
-            }
-        }
-        function handle() {
-            console.log(Math.random());
-        }
-        window.addEventListener('scroll', throttle(handle, 1000));
-    </script>
+  <div id="dv" class="dialog">
+    <div class="child">子元素</div>
+  </div>  　　　　
+  <script src="js/drag.js"></script>
 </body>
 </html>
