@@ -2,17 +2,34 @@
 .dialog {
   width: 600px;
   height: 600px;
-  background-color: blue;
-  border-radius: 50%;  
+  background-color: #3535cec4;
+  border-radius:0 0 50% 50%;  
   position: absolute;
+  .title{
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    width: calc(~"100% - 30px");
+    background:#eee;
+    text-align: center;
+    color: #666;
+    cursor: move;
+  }
   .child{
     position: absolute;
     top:50%;
     left:50%;
     width: 400px;
     height: 400px;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%,-60%);
     background:#f66;
-    color: #333;
+    padding:15px;
+    color: #666;
+    input{
+      margin-top:15px;
+      padding:6px;
+      border:none;
+      line-height: 30px;
+    }
   }
 }

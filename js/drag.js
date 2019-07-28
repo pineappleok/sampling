@@ -1,4 +1,5 @@
 //获取元素
+var draggleTitle = document.getElementById('draggleTitle');
 var dv = document.getElementById('dv');
 var x = 0;
 var y = 0;
@@ -6,7 +7,7 @@ var l = 0;
 var t = 0;
 var isDown = false;
 //鼠标按下事件
-dv.onmousedown = function(e) {
+draggleTitle.onmousedown = function(e) {
     //获取x坐标和y坐标
     x = e.clientX;
     y = e.clientY;
@@ -20,7 +21,7 @@ dv.onmousedown = function(e) {
     dv.style.cursor = 'move';
 }
 //鼠标移动
-window.onmousemove = function(e) {
+draggleTitle.onmousemove = function(e) {
     if (isDown == false) {
         return;
     }
@@ -50,7 +51,7 @@ window.onmousemove = function(e) {
     dv.style.top = nt + 'px';
 }
 //鼠标抬起事件
-dv.onmouseup = function() {
+draggleTitle.onmouseup = function() {
     //开关关闭
     isDown = false;
     dv.style.cursor = 'default';
