@@ -7,7 +7,9 @@
   height: 600px;
   background-color: #5c5ccc;
   border-radius: 0 0 50% 50%;
-  position: absolute;
+  position: fixed;
+  left: calc(50% - 300px);
+  top: calc(50% - 300px);
 }
 .dialog .title {
   position: absolute;
