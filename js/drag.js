@@ -33,7 +33,7 @@
         },false);
       },
       onDragStart: function (e) {
-        e.dataTransfer.setData('text/plain', 'demo1-src');
+        e.dataTransfer.setData('Text', 'demo1-src');
         console.log(e.target + ' onDragStart');
       },
       onDragEnter: function (e) {
@@ -54,7 +54,7 @@
       },
       onDrop: function (e) {
       	console.log(e.target + 'onDrop');
-        var id = e.dataTransfer.getData('text/plain');
+        var id = e.dataTransfer.getData('Text');
         var src = document.getElementById(id);
         var target = e.target;
         if (target.classList.contains('panel-item')) {
