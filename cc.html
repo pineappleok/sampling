@@ -5,24 +5,14 @@
   <link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 <body>
-  <div id="demo1">
-    <ul class="panel-list">
-      <li class="panel-item"></li>
-      <li class="panel-item"></li>
-      <li class="panel-item"></li>
-      <li class="panel-item"></li>
-      <li class="panel-item"></li>
-    </ul>
-    <h2>拖拽下面的方块到上面任意容器中</h2>
-  
-    <!-- 设置draggable使元素成为可拖拽元素 -->
-    <span class="movable" id="demo1-src" draggable="true"></span>
-  
-  <!-- <div id="demo2" draggable="true" ondragstart="event.dataTransfer.setData('text/plain')"> -->
-  <div id="demo2" >
-    This text may be dragged.
+  <div id="dv" class="dialog">
+    <span class="title" id="draggleTitle">这是一个可拖拽的标题</span>
+    <div class="child">子元素<br><input type="text" placeholder="写点什么吧">
+    <br>
+    <button onclick="hideOrShow()">显示/隐藏</button>
   </div>
-  </div>
+  <div class="child_dialog" id="childDialog">试试呀</div>
+  </div>  　　　　
   <script src="js/drag.js"></script>
 </body>
 </html>

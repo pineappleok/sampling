@@ -1,27 +1,55 @@
-#demo1 {
-  margin: 20px;
-}
-#demo1 .panel-list {
-  overflow: hidden;
-  list-style: none;
-  margin: 0;
+* {
   padding: 0;
+  margin: 0;
 }
-#demo1 .panel-item {
-  float: left;
-  margin: 0 0 5px 80px;
+.dialog {
+  width: 600px;
+  height: 600px;
+  background-color: #5c5ccc;
+  border-radius: 0 0 50% 50%;
+  position: absolute;
+  left: calc(50% - 300px);
+  top: calc(50% - 300px);
+}
+.dialog .title {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  width: calc(100% - 30px);
+  background: #eee;
+  text-align: center;
+  color: #666;
+  cursor: move;
+}
+.dialog .child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  height: 400px;
+  transform: translate(-50%, -60%);
+  background: #f66;
+  padding: 15px;
+  color: #666;
+}
+.dialog .child input {
+  margin-top: 15px;
+  padding: 6px;
+  border: none;
+  line-height: 30px;
+}
+.dialog .child_dialog {
+  display: none;
+  position: absolute;
+  top: 200px;
+  left: 200px;
   width: 100px;
   height: 100px;
-  background: #ddd;
-  border: 1px solid #ddd;
+  background: #0f0;
+  text-align: center;
+  line-height: 100px;
+  color: #fff;
 }
-#demo1-src {
-  display: inline-block;
-  width: 50px;
-  height: 50px;
-  background: purple;
-}
-#demo1 .over {
-  border: 1px dashed #000;
-  -webkit-transform: scale(0.8, 0.8);
+.dialog .show {
+  display: block;
 }
